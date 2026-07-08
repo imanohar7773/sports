@@ -4,9 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rubbel Sports · Premium Sportswear Ecosystem</title>
-    <!-- Fonts: Clash Display (for headings) & Inter (for body) -->
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&family=Clash+Display:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js">
+    </script>
     <style>
         /* ==========================================================
                1. CSS VARIABLES & RESET
@@ -20,26 +23,21 @@
             --color-text-light: #6B7280;
             --color-border: #E5E7EB;
             --color-white: #FFFFFF;
-
             --font-display: 'Clash Display', sans-serif;
             --font-body: 'Inter', sans-serif;
-
             --radius-sm: 4px;
             --radius-md: 8px;
             --radius-lg: 16px;
             --radius-xl: 24px;
             --radius-full: 9999px;
-
             --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
             --shadow-md: 0 10px 40px rgba(0, 0, 0, 0.08);
             --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
             --shadow-xl: 0 40px 80px rgba(0, 0, 0, 0.16);
-
             --transition-fast: 150ms ease;
             --transition-base: 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
             --transition-slow: 600ms cubic-bezier(0.22, 1, 0.36, 1);
         }
-
         *,
         *::before,
         *::after {
@@ -47,13 +45,11 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         html {
             scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-
         body {
             font-family: var(--font-body);
             background: var(--color-secondary);
@@ -61,7 +57,6 @@
             overflow-x: hidden;
             cursor: default;
         }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -83,13 +78,11 @@
             gap: 24px;
             transition: opacity 0.8s ease, visibility 0.8s ease;
         }
-
         #loader.hidden {
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
         }
-
         #loader .spinner {
             width: 48px;
             height: 48px;
@@ -98,14 +91,12 @@
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
-
         #loader p {
             color: rgba(255, 255, 255, 0.4);
             font-size: 0.8rem;
             letter-spacing: 0.15em;
             text-transform: uppercase;
         }
-
         @keyframes spin {
             to {
                 transform: rotate(360deg);
@@ -129,14 +120,12 @@
             border: 1px solid rgba(59, 130, 246, 0.2);
             will-change: transform;
         }
-
         .cursor-glow.hover {
             width: 56px;
             height: 56px;
             background: rgba(59, 130, 246, 0.25);
             border-color: rgba(59, 130, 246, 0.4);
         }
-
         @media (max-width: 768px) {
             .cursor-glow {
                 display: none;
@@ -164,7 +153,6 @@
             background: var(--color-accent);
             border-radius: var(--radius-full);
         }
-
         .section-title {
             font-family: var(--font-display);
             font-size: 3.2rem;
@@ -172,11 +160,9 @@
             letter-spacing: -0.02em;
             line-height: 1.1;
         }
-
         .section-title .highlight {
             color: var(--color-accent);
         }
-
         .section-sub {
             font-size: 1.1rem;
             color: var(--color-text-light);
@@ -184,7 +170,6 @@
             line-height: 1.7;
             margin-top: 12px;
         }
-
         .text-center {
             text-align: center;
         }
@@ -192,8 +177,6 @@
             margin-left: auto;
             margin-right: auto;
         }
-
-        /* Buttons */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -209,7 +192,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .btn-primary {
             background: var(--color-primary);
             color: var(--color-white);
@@ -218,7 +200,6 @@
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
         }
-
         .btn-accent {
             background: var(--color-accent);
             color: var(--color-white);
@@ -229,7 +210,6 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4);
         }
-
         .btn-ghost {
             background: transparent;
             color: var(--color-text);
@@ -240,7 +220,6 @@
             color: var(--color-white);
             border-color: var(--color-primary);
         }
-
         .btn-white {
             background: var(--color-white);
             color: var(--color-primary);
@@ -249,13 +228,14 @@
             transform: translateY(-2px);
             box-shadow: var(--shadow-md);
         }
-
         .btn-large {
             padding: 18px 40px;
             font-size: 1rem;
         }
-
-        /* Badges */
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.75rem;
+        }
         .badge {
             display: inline-flex;
             align-items: center;
@@ -267,30 +247,24 @@
             text-transform: uppercase;
             letter-spacing: 0.06em;
         }
-
         .badge-blue {
             background: rgba(59, 130, 246, 0.1);
             color: var(--color-accent);
         }
-
         .badge-green {
             background: rgba(16, 185, 129, 0.1);
             color: #10B981;
         }
-
-        /* Scroll Reveal */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
             transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
                 transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
         }
-
         .reveal.visible {
             opacity: 1;
             transform: translateY(0);
         }
-
         .reveal-delay-1 {
             transition-delay: 0.1s;
         }
@@ -313,10 +287,9 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 16px 0;
+            padding: 12px 0;
             transition: var(--transition-base);
         }
-
         header.scrolled {
             background: rgba(255, 255, 255, 0.72);
             backdrop-filter: blur(20px) saturate(180%);
@@ -324,13 +297,11 @@
             box-shadow: var(--shadow-sm);
             border-bottom: 1px solid rgba(0, 0, 0, 0.04);
         }
-
         .header-inner {
             display: flex;
             align-items: center;
             gap: 32px;
         }
-
         .logo {
             display: flex;
             align-items: center;
@@ -361,7 +332,6 @@
             margin-top: -2px;
             letter-spacing: 0.04em;
         }
-
         .nav-links {
             display: flex;
             gap: 4px;
@@ -384,7 +354,6 @@
             color: var(--color-accent);
             font-weight: 600;
         }
-
         .header-actions {
             display: flex;
             align-items: center;
@@ -422,6 +391,7 @@
             border-radius: var(--radius-full);
             min-width: 18px;
             text-align: center;
+            transition: var(--transition-fast);
         }
         .header-actions .btn-dealer {
             padding: 8px 20px;
@@ -438,8 +408,6 @@
             transform: scale(1.04);
             box-shadow: var(--shadow-md);
         }
-
-        /* Mobile Nav Toggle */
         .nav-toggle {
             display: none;
             flex-direction: column;
@@ -457,6 +425,44 @@
             transition: var(--transition-fast);
         }
 
+        /* Live Ticker */
+        .ticker-wrap {
+            background: var(--color-primary);
+            color: var(--color-white);
+            padding: 4px 0;
+            font-size: 0.7rem;
+            font-weight: 500;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            position: fixed;
+            top: 68px;
+            left: 0;
+            right: 0;
+            z-index: 999;
+        }
+        .ticker-wrap .ticker-text {
+            display: inline-block;
+            white-space: nowrap;
+            animation: ticker-scroll 25s linear infinite;
+            padding-left: 100%;
+        }
+        .ticker-wrap .ticker-text span {
+            margin: 0 24px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .ticker-wrap .ticker-text i {
+            color: var(--color-accent);
+            margin-right: 4px;
+        }
+        @keyframes ticker-scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
         /* ==========================================================
            6. HERO
            ========================================================== */
@@ -467,9 +473,9 @@
             background: var(--color-primary);
             position: relative;
             overflow: hidden;
-            padding: 120px 0 80px;
+            padding: 140px 0 80px;
+            margin-top: 32px;
         }
-
         .hero-bg {
             position: absolute;
             inset: 0;
@@ -483,13 +489,11 @@
         .hero:hover .hero-bg {
             transform: scale(1);
         }
-
         .hero .overlay {
             position: absolute;
             inset: 0;
             background: linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0.6) 100%);
         }
-
         .hero .floating-shapes {
             position: absolute;
             inset: 0;
@@ -526,7 +530,6 @@
             animation-delay: -10s;
             background: rgba(59, 130, 246, 0.08);
         }
-
         @keyframes float-shape {
             0% {
                 transform: translate(0, 0) scale(1);
@@ -541,7 +544,6 @@
                 transform: translate(10px, -10px) scale(1.05);
             }
         }
-
         .hero-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -550,7 +552,6 @@
             position: relative;
             z-index: 2;
         }
-
         .hero-content h1 {
             font-family: var(--font-display);
             font-size: 4.2rem;
@@ -594,7 +595,6 @@
         .hero-content .trust-line span i {
             color: var(--color-accent);
         }
-
         .hero-visual {
             display: flex;
             justify-content: center;
@@ -635,7 +635,6 @@
         .hero-visual .product-frame .badge-float span:last-child {
             color: var(--color-accent);
         }
-
         .hero-visual .float-card {
             position: absolute;
             background: rgba(255, 255, 255, 0.04);
@@ -677,7 +676,6 @@
             right: -10%;
             animation-delay: 4s;
         }
-
         @keyframes float-element {
             0%,
             100% {
@@ -689,10 +687,10 @@
         }
 
         /* ==========================================================
-           7. TRUST BAR (Marquee)
+           7. TRUST BAR
            ========================================================== */
         .trust-bar {
-            padding: 24px 0;
+            padding: 16px 0;
             background: var(--color-white);
             border-bottom: 1px solid var(--color-border);
             overflow: hidden;
@@ -715,7 +713,6 @@
         .trust-bar .marquee span i {
             color: var(--color-accent);
         }
-
         @keyframes marquee-scroll {
             0% {
                 transform: translateX(0);
@@ -726,7 +723,7 @@
         }
 
         /* ==========================================================
-           8. CATEGORIES (Asymmetric Grid)
+           8. CATEGORIES
            ========================================================== */
         .categories {
             padding: 80px 0;
@@ -780,7 +777,6 @@
             color: rgba(59, 130, 246, 0.04);
             pointer-events: none;
         }
-
         .categories-grid .card-featured {
             grid-row: span 2;
             background: var(--color-primary);
@@ -806,7 +802,7 @@
         }
 
         /* ==========================================================
-           9. FEATURED PRODUCTS
+           9. PRODUCTS
            ========================================================== */
         .products {
             padding: 80px 0;
@@ -842,6 +838,11 @@
             position: relative;
             overflow: hidden;
         }
+        .product-card .image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
         .product-card .image .badge {
             position: absolute;
             top: 12px;
@@ -865,6 +866,10 @@
             color: var(--color-text-light);
         }
         .product-card .image .wishlist:hover {
+            background: var(--color-accent);
+            color: var(--color-white);
+        }
+        .product-card .image .wishlist.active {
             background: var(--color-accent);
             color: var(--color-white);
         }
@@ -904,6 +909,9 @@
         .product-card .info .name {
             font-weight: 600;
             font-size: 0.95rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         .product-card .info .sku {
             font-size: 0.7rem;
@@ -962,9 +970,47 @@
             padding: 8px 16px;
             font-size: 0.8rem;
         }
+        /* Bulk Pricing Toggle */
+        .bulk-toggle {
+            margin-top: 8px;
+            font-size: 0.7rem;
+            color: var(--color-accent);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-weight: 600;
+            transition: var(--transition-fast);
+        }
+        .bulk-toggle:hover {
+            gap: 8px;
+        }
+        .bulk-table {
+            display: none;
+            margin-top: 8px;
+            font-size: 0.7rem;
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--color-white);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+        .bulk-table.active {
+            display: table;
+        }
+        .bulk-table th,
+        .bulk-table td {
+            padding: 4px 8px;
+            border: 1px solid var(--color-border);
+            text-align: center;
+        }
+        .bulk-table th {
+            background: var(--color-secondary);
+            font-weight: 600;
+        }
 
         /* ==========================================================
-           10. AI STUDIO SHOWCASE (Dark "SaaS" Vibe)
+           10. AI STUDIO SHOWCASE
            ========================================================== */
         .studio-showcase {
             padding: 80px 0;
@@ -1014,7 +1060,6 @@
             color: var(--color-accent);
             font-size: 0.8rem;
         }
-
         .studio-showcase .mockup {
             background: rgba(255, 255, 255, 0.02);
             border-radius: var(--radius-xl);
@@ -1043,28 +1088,25 @@
         .studio-showcase .mockup .toolbar .dot:nth-child(3) {
             background: #10B981;
         }
-        .studio-showcase .mockup .preview-area {
+        #three-canvas {
+            width: 100%;
             aspect-ratio: 1/1;
-            background: rgba(0, 0, 0, 0.3);
             border-radius: var(--radius-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 6rem;
-            color: rgba(255, 255, 255, 0.05);
-            position: relative;
+            background: rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.02);
+            cursor: grab;
         }
-        .studio-showcase .mockup .preview-area .controls {
-            position: absolute;
-            bottom: 16px;
-            left: 16px;
-            right: 16px;
+        #three-canvas:active {
+            cursor: grabbing;
+        }
+        .studio-controls {
             display: flex;
             gap: 8px;
             justify-content: center;
+            margin-top: 12px;
+            flex-wrap: wrap;
         }
-        .studio-showcase .mockup .preview-area .controls .ctrl-btn {
+        .studio-controls .ctrl-btn {
             padding: 6px 16px;
             border-radius: var(--radius-full);
             background: rgba(255, 255, 255, 0.04);
@@ -1075,14 +1117,49 @@
             cursor: pointer;
             transition: var(--transition-fast);
         }
-        .studio-showcase .mockup .preview-area .controls .ctrl-btn:hover {
+        .studio-controls .ctrl-btn:hover {
             background: var(--color-accent);
             color: var(--color-white);
             border-color: var(--color-accent);
         }
+        .studio-controls .ctrl-btn.active {
+            background: var(--color-accent);
+            color: var(--color-white);
+        }
+
+        /* Inspiration Gallery */
+        .inspiration-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .inspiration-grid .item {
+            aspect-ratio: 1/1;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.2);
+            transition: var(--transition-fast);
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .inspiration-grid .item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .inspiration-grid .item:hover {
+            border-color: var(--color-accent);
+            transform: scale(1.02);
+        }
 
         /* ==========================================================
-           11. CRAFT / MANUFACTURING (Storytelling)
+           11. CRAFT / MANUFACTURING
            ========================================================== */
         .craft {
             padding: 80px 0;
@@ -1171,7 +1248,58 @@
         }
 
         /* ==========================================================
-           12. TESTIMONIALS
+           12. LIVE FEED
+           ========================================================== */
+        .live-feed {
+            padding: 60px 0;
+            background: var(--color-white);
+            border-bottom: 1px solid var(--color-border);
+        }
+        .live-feed .feed-container {
+            max-height: 200px;
+            overflow-y: auto;
+            padding-right: 12px;
+        }
+        .live-feed .feed-container::-webkit-scrollbar {
+            width: 4px;
+        }
+        .live-feed .feed-container::-webkit-scrollbar-track {
+            background: var(--color-secondary);
+        }
+        .live-feed .feed-container::-webkit-scrollbar-thumb {
+            background: var(--color-accent);
+            border-radius: var(--radius-full);
+        }
+        .live-feed .feed-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--color-border);
+            font-size: 0.85rem;
+            opacity: 0;
+            animation: fadeInFeed 0.5s forwards;
+        }
+        @keyframes fadeInFeed {
+            to {
+                opacity: 1;
+            }
+        }
+        .live-feed .feed-item .status {
+            font-weight: 600;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            font-size: 0.65rem;
+            letter-spacing: 0.04em;
+        }
+        .live-feed .feed-item .time {
+            margin-left: auto;
+            color: var(--color-text-light);
+            font-size: 0.7rem;
+        }
+
+        /* ==========================================================
+           13. TESTIMONIALS
            ========================================================== */
         .testimonials {
             padding: 80px 0;
@@ -1225,7 +1353,6 @@
             font-size: 0.8rem;
             color: rgba(255, 255, 255, 0.5);
         }
-
         .testimonial-list {
             display: flex;
             flex-direction: column;
@@ -1281,7 +1408,7 @@
         }
 
         /* ==========================================================
-           13. B2B SOLUTIONS
+           14. B2B SOLUTIONS
            ========================================================== */
         .b2b-solutions {
             padding: 80px 0;
@@ -1337,7 +1464,7 @@
         }
 
         /* ==========================================================
-           14. FINAL CTA
+           15. FINAL CTA
            ========================================================== */
         .final-cta {
             padding: 80px 0;
@@ -1382,7 +1509,215 @@
         }
 
         /* ==========================================================
-           15. FOOTER
+           16. RECENTLY VIEWED
+           ========================================================== */
+        .recently-viewed {
+            padding: 60px 0;
+            background: var(--color-secondary);
+            border-top: 1px solid var(--color-border);
+        }
+        .recently-viewed .carousel {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            padding: 16px 0;
+            scroll-snap-type: x mandatory;
+        }
+        .recently-viewed .carousel .item {
+            flex: 0 0 150px;
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            scroll-snap-align: start;
+            transition: var(--transition-base);
+        }
+        .recently-viewed .carousel .item:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-md);
+        }
+        .recently-viewed .carousel .item img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+        .recently-viewed .carousel .item .info {
+            padding: 8px 12px;
+            font-size: 0.7rem;
+        }
+        .recently-viewed .carousel .item .info .name {
+            font-weight: 600;
+        }
+        .recently-viewed .carousel .item .info .price {
+            color: var(--color-accent);
+            font-weight: 700;
+        }
+
+        /* ==========================================================
+           17. QUICK VIEW MODAL
+           ========================================================== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-content {
+            background: var(--color-white);
+            border-radius: var(--radius-xl);
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 40px;
+            position: relative;
+            animation: modalIn 0.3s ease;
+        }
+        @keyframes modalIn {
+            from {
+                transform: scale(0.95) translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--color-border);
+            background: var(--color-white);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-close:hover {
+            background: var(--color-primary);
+            color: var(--color-white);
+        }
+        .modal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+        .modal-grid .image {
+            background: var(--color-secondary);
+            border-radius: var(--radius-lg);
+            aspect-ratio: 1/1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .modal-grid .image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .modal-grid .info .name {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+        .modal-grid .info .sku {
+            color: var(--color-text-light);
+            font-size: 0.8rem;
+        }
+        .modal-grid .info .price-row {
+            margin: 12px 0;
+        }
+        .modal-grid .info .price-row .dealer {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--color-accent);
+        }
+        .modal-grid .info .price-row .retail {
+            color: var(--color-text-light);
+            font-size: 1rem;
+            text-decoration: line-through;
+            margin-left: 12px;
+        }
+        .modal-grid .info .description {
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .modal-grid .info .btn {
+            width: 100%;
+            margin-top: 16px;
+            padding: 16px;
+        }
+
+        /* ==========================================================
+           18. CHAT WIDGET
+           ========================================================== */
+        .chat-widget {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 1500;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 12px;
+        }
+        .chat-widget .bubble {
+            background: var(--color-white);
+            border-radius: var(--radius-lg) var(--radius-lg) var(--radius-sm) var(--radius-lg);
+            padding: 12px 16px;
+            box-shadow: var(--shadow-lg);
+            font-size: 0.85rem;
+            max-width: 240px;
+            border: 1px solid var(--color-border);
+            display: none;
+        }
+        .chat-widget .bubble.active {
+            display: block;
+            animation: modalIn 0.3s ease;
+        }
+        .chat-widget .bubble .name {
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: var(--color-accent);
+        }
+        .chat-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--color-accent);
+            color: var(--color-white);
+            border: none;
+            font-size: 1.6rem;
+            box-shadow: var(--shadow-lg);
+            cursor: pointer;
+            transition: var(--transition-base);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .chat-btn:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* ==========================================================
+           19. FOOTER
            ========================================================== */
         footer {
             background: var(--color-primary);
@@ -1451,7 +1786,7 @@
         }
 
         /* ==========================================================
-           16. RESPONSIVE
+           20. RESPONSIVE
            ========================================================== */
         @media (max-width: 1024px) {
             .hero-grid {
@@ -1490,6 +1825,9 @@
             .footer-grid {
                 grid-template-columns: 1fr 1fr;
             }
+            .inspiration-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
@@ -1506,8 +1844,9 @@
                 font-size: 2.4rem;
             }
             .hero {
-                padding: 100px 0 40px;
+                padding: 120px 0 40px;
                 min-height: auto;
+                margin-top: 60px;
             }
             .section-title {
                 font-size: 2.2rem;
@@ -1530,6 +1869,23 @@
             .hero-content .trust-line {
                 gap: 16px;
             }
+            .modal-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .modal-content {
+                padding: 24px;
+            }
+            .ticker-wrap {
+                top: 60px;
+            }
+            .ticker-wrap .ticker-text {
+                font-size: 0.6rem;
+            }
+            .chat-widget .bubble {
+                max-width: 180px;
+                font-size: 0.75rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1548,27 +1904,24 @@
             .final-cta h2 {
                 font-size: 2rem;
             }
+            .inspiration-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- ==========================================================
-    LOADER
-    ========================================================== -->
+    <!-- LOADER -->
     <div id="loader">
         <div class="spinner"></div>
         <p>Loading Experience</p>
     </div>
 
-    <!-- ==========================================================
-    CUSTOM CURSOR
-    ========================================================== -->
+    <!-- CUSTOM CURSOR -->
     <div class="cursor-glow" id="cursorGlow"></div>
 
-    <!-- ==========================================================
-    HEADER
-    ========================================================== -->
+    <!-- HEADER -->
     <header id="header">
         <div class="container header-inner">
             <a href="#" class="logo">
@@ -1576,7 +1929,6 @@
                 RUBBEL
                 <span>Wholesale Sportswear</span>
             </a>
-
             <ul class="nav-links">
                 <li><a href="#">Products</a></li>
                 <li><a href="#" class="studio-link">AI Studio</a></li>
@@ -1584,13 +1936,12 @@
                 <li><a href="#">OEM</a></li>
                 <li><a href="#">Corporate</a></li>
             </ul>
-
             <div class="header-actions">
                 <button class="icon-btn" aria-label="Search"><i class="fas fa-search"></i></button>
                 <button class="icon-btn" aria-label="Wishlist"><i class="far fa-heart"></i></button>
-                <button class="icon-btn" aria-label="Cart">
+                <button class="icon-btn" aria-label="Cart" id="cartBtn">
                     <i class="fas fa-shopping-bag"></i>
-                    <span class="count">3</span>
+                    <span class="count" id="cartCount">0</span>
                 </button>
                 <button class="btn-dealer"><i class="fas fa-user-tie"></i> Dealer</button>
                 <button class="nav-toggle" aria-label="Toggle navigation">
@@ -1600,9 +1951,25 @@
         </div>
     </header>
 
-    <!-- ==========================================================
-    HERO
-    ========================================================== -->
+    <!-- LIVE TICKER -->
+    <div class="ticker-wrap">
+        <div class="ticker-text" id="tickerText">
+            <span><i class="fas fa-store"></i> 1,200+ Retailers trust us</span>
+            <span><i class="fas fa-clock"></i> 47 orders shipped today</span>
+            <span><i class="fas fa-paint-brush"></i> 2,341 custom designs created</span>
+            <span><i class="fas fa-certificate"></i> ISO Certified Factory</span>
+            <span><i class="fas fa-star"></i> Rated 4.9/5 by our partners</span>
+            <span><i class="fas fa-truck"></i> Pan-India delivery in 24hrs</span>
+            <span><i class="fas fa-store"></i> 1,200+ Retailers trust us</span>
+            <span><i class="fas fa-clock"></i> 47 orders shipped today</span>
+            <span><i class="fas fa-paint-brush"></i> 2,341 custom designs created</span>
+            <span><i class="fas fa-certificate"></i> ISO Certified Factory</span>
+            <span><i class="fas fa-star"></i> Rated 4.9/5 by our partners</span>
+            <span><i class="fas fa-truck"></i> Pan-India delivery in 24hrs</span>
+        </div>
+    </div>
+
+    <!-- HERO -->
     <section class="hero" id="hero">
         <div class="hero-bg"></div>
         <div class="overlay"></div>
@@ -1664,9 +2031,7 @@
         </div>
     </section>
 
-    <!-- ==========================================================
-    TRUST BAR
-    ========================================================== -->
+    <!-- TRUST BAR -->
     <section class="trust-bar">
         <div class="marquee">
             <span><i class="fas fa-store"></i> Trusted by 1,200+ Retailers</span>
@@ -1684,9 +2049,7 @@
         </div>
     </section>
 
-    <!-- ==========================================================
-    CATEGORIES
-    ========================================================== -->
+    <!-- CATEGORIES -->
     <section class="categories">
         <div class="container">
             <div class="text-center reveal">
@@ -1742,120 +2105,22 @@
         </div>
     </section>
 
-    <!-- ==========================================================
-    FEATURED PRODUCTS
-    ========================================================== -->
-    <section class="products">
+    <!-- PRODUCTS -->
+    <section class="products" id="products">
         <div class="container">
             <div class="text-center reveal">
                 <span class="section-label">Bestsellers</span>
                 <h2 class="section-title">Featured <span class="highlight">Wholesale</span></h2>
                 <p class="section-sub">Top-rated products with competitive bulk pricing.</p>
             </div>
-            <div class="product-grid">
-                <div class="product-card reveal">
-                    <div class="image">
-                        <i class="fas fa-tshirt"></i>
-                        <span class="badge badge-blue">Best Seller</span>
-                        <button class="wishlist"><i class="far fa-heart"></i></button>
-                        <div class="quick-view"><button>Quick Preview</button></div>
-                    </div>
-                    <div class="info">
-                        <div class="name">Dry-Fit Performance T-Shirt</div>
-                        <div class="sku">SKU: RS-T101</div>
-                        <div class="price-row">
-                            <span class="dealer">₹425</span>
-                            <span class="retail">₹650</span>
-                        </div>
-                        <div class="meta-row">
-                            <span class="stock"><span class="dot"></span> In Stock</span>
-                            <span>MOQ: 50 pcs</span>
-                        </div>
-                        <div class="actions">
-                            <input class="qty" type="number" value="10" min="1" />
-                            <button class="btn btn-primary btn-small">Add</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card reveal reveal-delay-1">
-                    <div class="image">
-                        <i class="fas fa-tshirt"></i>
-                        <span class="badge badge-green">Hot Deal</span>
-                        <button class="wishlist"><i class="far fa-heart"></i></button>
-                        <div class="quick-view"><button>Quick Preview</button></div>
-                    </div>
-                    <div class="info">
-                        <div class="name">Compression Cotton Lowers</div>
-                        <div class="sku">SKU: RS-L204</div>
-                        <div class="price-row">
-                            <span class="dealer">₹680</span>
-                            <span class="retail">₹850</span>
-                        </div>
-                        <div class="meta-row">
-                            <span class="stock"><span class="dot"></span> In Stock</span>
-                            <span>MOQ: 30 pcs</span>
-                        </div>
-                        <div class="actions">
-                            <input class="qty" type="number" value="10" min="1" />
-                            <button class="btn btn-primary btn-small">Add</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card reveal reveal-delay-2">
-                    <div class="image">
-                        <i class="fas fa-tshirt"></i>
-                        <button class="wishlist"><i class="far fa-heart"></i></button>
-                        <div class="quick-view"><button>Quick Preview</button></div>
-                    </div>
-                    <div class="info">
-                        <div class="name">Seamless Innerwear (6-Pack)</div>
-                        <div class="sku">SKU: RS-I309</div>
-                        <div class="price-row">
-                            <span class="dealer">₹299</span>
-                            <span class="retail">₹450</span>
-                        </div>
-                        <div class="meta-row">
-                            <span class="stock"><span class="dot"></span> In Stock</span>
-                            <span>MOQ: 100 pcs</span>
-                        </div>
-                        <div class="actions">
-                            <input class="qty" type="number" value="10" min="1" />
-                            <button class="btn btn-primary btn-small">Add</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card reveal reveal-delay-3">
-                    <div class="image">
-                        <i class="fas fa-tshirt"></i>
-                        <span class="badge badge-blue">New</span>
-                        <button class="wishlist"><i class="far fa-heart"></i></button>
-                        <div class="quick-view"><button>Quick Preview</button></div>
-                    </div>
-                    <div class="info">
-                        <div class="name">Racerback Tank Top</div>
-                        <div class="sku">SKU: RS-T412</div>
-                        <div class="price-row">
-                            <span class="dealer">₹550</span>
-                            <span class="retail">₹720</span>
-                        </div>
-                        <div class="meta-row">
-                            <span class="stock"><span class="dot"></span> In Stock</span>
-                            <span>MOQ: 40 pcs</span>
-                        </div>
-                        <div class="actions">
-                            <input class="qty" type="number" value="10" min="1" />
-                            <button class="btn btn-primary btn-small">Add</button>
-                        </div>
-                    </div>
-                </div>
+            <div class="product-grid" id="productGrid">
+                <!-- Products injected by JS -->
             </div>
         </div>
     </section>
 
-    <!-- ==========================================================
-    AI STUDIO SHOWCASE
-    ========================================================== -->
-    <section class="studio-showcase">
+    <!-- AI STUDIO SHOWCASE -->
+    <section class="studio-showcase" id="studio">
         <div class="bg-glow"></div>
         <div class="container">
             <div class="grid">
@@ -1870,6 +2135,17 @@
                         <div class="item"><i class="fas fa-check-circle"></i> Real-time Editing</div>
                     </div>
                     <button class="btn btn-accent btn-large"><i class="fas fa-rocket"></i> Launch Studio</button>
+
+                    <!-- Design Inspiration Gallery -->
+                    <div style="margin-top: 32px;">
+                        <p style="color:rgba(255,255,255,0.4); font-size:0.8rem; margin-bottom:12px;">DESIGN INSPIRATION</p>
+                        <div class="inspiration-grid">
+                            <div class="item"><img src="https://picsum.photos/seed/des1/200/200" alt="Design 1" /></div>
+                            <div class="item"><img src="https://picsum.photos/seed/des2/200/200" alt="Design 2" /></div>
+                            <div class="item"><img src="https://picsum.photos/seed/des3/200/200" alt="Design 3" /></div>
+                            <div class="item"><img src="https://picsum.photos/seed/des4/200/200" alt="Design 4" /></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="mockup reveal reveal-delay-2">
                     <div class="toolbar">
@@ -1877,23 +2153,34 @@
                         <div class="dot"></div>
                         <div class="dot"></div>
                     </div>
-                    <div class="preview-area">
-                        <i class="fas fa-tshirt"></i>
-                        <div class="controls">
-                            <button class="ctrl-btn">Front</button>
-                            <button class="ctrl-btn">Back</button>
-                            <button class="ctrl-btn">Sleeve</button>
-                            <button class="ctrl-btn"><i class="fas fa-rotate"></i></button>
-                        </div>
+                    <div id="three-canvas"></div>
+                    <div class="studio-controls">
+                        <button class="ctrl-btn active" data-view="front">Front</button>
+                        <button class="ctrl-btn" data-view="back">Back</button>
+                        <button class="ctrl-btn" data-view="sleeve">Sleeve</button>
+                        <button class="ctrl-btn" id="resetView"><i class="fas fa-rotate"></i></button>
+                        <input type="color" id="colorPicker" value="#3B82F6" style="width:32px; height:32px; border-radius:50%; border:none; padding:0; cursor:pointer; background:transparent;" />
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ==========================================================
-    CRAFT / MANUFACTURING
-    ========================================================== -->
+    <!-- LIVE FEED -->
+    <section class="live-feed">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-label">Live Feed</span>
+                <h2 class="section-title" style="font-size:1.8rem;">Manufacturing <span class="highlight">in Motion</span></h2>
+                <p class="section-sub">Real-time updates from our factory floor.</p>
+            </div>
+            <div class="feed-container" id="feedContainer">
+                <!-- Feed items injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CRAFT / MANUFACTURING -->
     <section class="craft">
         <div class="container">
             <div class="craft-grid">
@@ -1931,9 +2218,7 @@
         </div>
     </section>
 
-    <!-- ==========================================================
-    TESTIMONIALS
-    ========================================================== -->
+    <!-- TESTIMONIALS -->
     <section class="testimonials">
         <div class="container">
             <div class="text-center reveal">
@@ -1968,9 +2253,7 @@
         </div>
     </section>
 
-    <!-- ==========================================================
-    B2B SOLUTIONS
-    ========================================================== -->
+    <!-- B2B SOLUTIONS -->
     <section class="b2b-solutions">
         <div class="container">
             <div class="text-center reveal">
@@ -2001,9 +2284,7 @@
         </div>
     </section>
 
-    <!-- ==========================================================
-    FINAL CTA
-    ========================================================== -->
+    <!-- FINAL CTA -->
     <section class="final-cta">
         <div class="bg-glow"></div>
         <div class="container reveal">
@@ -2016,9 +2297,17 @@
         </div>
     </section>
 
-    <!-- ==========================================================
-    FOOTER
-    ========================================================== -->
+    <!-- RECENTLY VIEWED -->
+    <section class="recently-viewed" id="recentlyViewed">
+        <div class="container">
+            <h2 style="font-family:var(--font-display); font-weight:600; font-size:1.4rem; margin-bottom:8px;">Recently <span class="highlight">Viewed</span></h2>
+            <div class="carousel" id="recentCarousel">
+                <!-- Injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -2055,11 +2344,40 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <span>© 2026 Rubbel Sports. All rights reserved.</span>
+                <span>2026 NEXORA DEGITAL AGENCY. All rights reserved. MANOHAR SINGH</span>
                 <span><i class="fas fa-shield-alt" style="color:var(--color-accent);"></i> Secure Payments: UPI · Razorpay · Bank Transfer</span>
             </div>
         </div>
     </footer>
+
+    <!-- QUICK VIEW MODAL -->
+    <div class="modal-overlay" id="quickViewModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
+            <div class="modal-grid">
+                <div class="image"><img id="modalImage" src="" alt="Product" /></div>
+                <div class="info">
+                    <div class="name" id="modalName">Product Name</div>
+                    <div class="sku" id="modalSku">SKU: RS-XXXX</div>
+                    <div class="price-row">
+                        <span class="dealer" id="modalPrice">₹XXX</span>
+                        <span class="retail" id="modalRetail">₹XXX</span>
+                    </div>
+                    <div class="description" id="modalDesc">Premium sportswear engineered for performance.</div>
+                    <button class="btn btn-accent" id="modalAddCart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHAT WIDGET -->
+    <div class="chat-widget">
+        <div class="bubble" id="chatBubble">
+            <div class="name">Rubbel Concierge</div>
+            <p>Hi 👋 How can I help with your bulk order today?</p>
+        </div>
+        <button class="chat-btn" id="chatToggle"><i class="fas fa-comment-dots"></i></button>
+    </div>
 
     <!-- ==========================================================
     JAVASCRIPT
@@ -2091,7 +2409,7 @@
                 header.classList.toggle('scrolled', window.scrollY > 50);
             });
 
-            // ---------- SCROLL REVEAL (Intersection Observer) ----------
+            // ---------- SCROLL REVEAL ----------
             const reveals = document.querySelectorAll('.reveal');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -2100,45 +2418,440 @@
                     }
                 });
             }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-
             reveals.forEach(el => observer.observe(el));
 
-            // ---------- WISHLIST TOGGLE ----------
-            document.querySelectorAll('.wishlist').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const icon = this.querySelector('i');
-                    icon.classList.toggle('far');
-                    icon.classList.toggle('fas');
-                });
-            });
+            // ---------- PRODUCT DATA ----------
+            const products = [{
+                id: 1,
+                name: 'Dry-Fit Performance T-Shirt',
+                sku: 'RS-T101',
+                dealer: 425,
+                retail: 650,
+                moq: 50,
+                stock: true,
+                image: 'https://picsum.photos/seed/tshirt1/400/400',
+                desc: 'Engineered with moisture-wicking technology for intense workouts.'
+            }, {
+                id: 2,
+                name: 'Compression Cotton Lowers',
+                sku: 'RS-L204',
+                dealer: 680,
+                retail: 850,
+                moq: 30,
+                stock: true,
+                image: 'https://picsum.photos/seed/lowers1/400/400',
+                desc: '4-way stretch compression for maximum mobility and recovery.'
+            }, {
+                id: 3,
+                name: 'Seamless Innerwear (6-Pack)',
+                sku: 'RS-I309',
+                dealer: 299,
+                retail: 450,
+                moq: 100,
+                stock: true,
+                image: 'https://picsum.photos/seed/inner1/400/400',
+                desc: 'Ultra-soft seamless comfort for all-day wear.'
+            }, {
+                id: 4,
+                name: 'Racerback Tank Top',
+                sku: 'RS-T412',
+                dealer: 550,
+                retail: 720,
+                moq: 40,
+                stock: true,
+                image: 'https://picsum.photos/seed/tank1/400/400',
+                desc: 'Lightweight racerback design for unrestricted range of motion.'
+            }];
 
-            // ---------- QUANTITY CONTROLS ----------
-            document.querySelectorAll('.actions .qty').forEach(input => {
-                const parent = input.closest('.actions');
-                if (!parent) return;
-                const btns = parent.querySelectorAll('button');
-                if (btns.length < 2) return;
-                const minus = btns[0];
-                const plus = btns[1];
-                if (minus && plus) {
-                    minus.addEventListener('click', () => {
-                        let v = parseInt(input.value) || 1;
-                        if (v > 1) input.value = v - 1;
+            // ---------- RENDER PRODUCTS ----------
+            const grid = document.getElementById('productGrid');
+            let cartCount = 0;
+            const recentViewed = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
+
+            function renderProducts() {
+                grid.innerHTML = '';
+                products.forEach(p => {
+                    const card = document.createElement('div');
+                    card.className = 'product-card reveal';
+                    card.dataset.id = p.id;
+                    card.innerHTML = `
+                            <div class="image">
+                                <img src="${p.image}" alt="${p.name}" loading="lazy" />
+                                <span class="badge badge-blue">Best Seller</span>
+                                <button class="wishlist" data-id="${p.id}"><i class="far fa-heart"></i></button>
+                                <div class="quick-view"><button class="quickViewBtn" data-id="${p.id}">Quick Preview</button></div>
+                            </div>
+                            <div class="info">
+                                <div class="name">${p.name}</div>
+                                <div class="sku">SKU: ${p.sku}</div>
+                                <div class="price-row">
+                                    <span class="dealer">₹${p.dealer}</span>
+                                    <span class="retail">₹${p.retail}</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="stock"><span class="dot"></span> ${p.stock ? 'In Stock' : 'Out of Stock'}</span>
+                                    <span>MOQ: ${p.moq} pcs</span>
+                                </div>
+                                <div class="actions">
+                                    <input class="qty" type="number" value="10" min="1" />
+                                    <button class="btn btn-primary btn-small addCart" data-id="${p.id}">Add</button>
+                                </div>
+                                <div class="bulk-toggle" data-id="${p.id}">▼ Show Bulk Pricing</div>
+                                <table class="bulk-table" id="bulk-${p.id}">
+                                    <thead><tr><th>Qty</th><th>Price</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>${p.moq} - ${p.moq*2}</td><td>₹${p.dealer}</td></tr>
+                                        <tr><td>${p.moq*2+1} - ${p.moq*4}</td><td>₹${Math.round(p.dealer*0.9)}</td></tr>
+                                        <tr><td>${p.moq*4+1}+</td><td>₹${Math.round(p.dealer*0.8)}</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        `;
+                    grid.appendChild(card);
+                });
+                attachProductEvents();
+            }
+
+            function attachProductEvents() {
+                // Wishlist
+                document.querySelectorAll('.wishlist').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const icon = this.querySelector('i');
+                        icon.classList.toggle('far');
+                        icon.classList.toggle('fas');
+                        this.classList.toggle('active');
                     });
-                    plus.addEventListener('click', () => {
-                        let v = parseInt(input.value) || 1;
-                        input.value = v + 1;
+                });
+
+                // Quick View
+                document.querySelectorAll('.quickViewBtn').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const id = parseInt(this.dataset.id);
+                        const p = products.find(pr => pr.id === id);
+                        if (p) openQuickView(p);
                     });
+                });
+
+                // Add to Cart (from card)
+                document.querySelectorAll('.addCart').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const id = parseInt(this.dataset.id);
+                        const card = this.closest('.product-card');
+                        const qtyInput = card.querySelector('.qty');
+                        const qty = parseInt(qtyInput.value) || 1;
+                        cartCount += qty;
+                        updateCart();
+                        // Add to recently viewed
+                        addRecentlyViewed(id);
+                        // Micro interaction: bounce cart
+                        const cartBtn = document.getElementById('cartBtn');
+                        cartBtn.style.transform = 'scale(1.2)';
+                        setTimeout(() => cartBtn.style.transform = 'scale(1)', 300);
+                    });
+                });
+
+                // Bulk Toggle
+                document.querySelectorAll('.bulk-toggle').forEach(toggle => {
+                    toggle.addEventListener('click', function() {
+                        const id = this.dataset.id;
+                        const table = document.getElementById(`bulk-${id}`);
+                        table.classList.toggle('active');
+                        this.textContent = table.classList.contains('active') ? '▲ Hide Bulk Pricing' :
+                            '▼ Show Bulk Pricing';
+                    });
+                });
+
+                // Quick view on product card click (entire card except buttons)
+                document.querySelectorAll('.product-card').forEach(card => {
+                    card.addEventListener('click', function(e) {
+                        if (e.target.closest('button') || e.target.closest('.qty') || e.target.closest(
+                                '.bulk-toggle')) return;
+                        const id = parseInt(this.dataset.id);
+                        const p = products.find(pr => pr.id === id);
+                        if (p) openQuickView(p);
+                    });
+                });
+            }
+
+            // ---------- QUICK VIEW MODAL ----------
+            const modal = document.getElementById('quickViewModal');
+            const modalClose = document.getElementById('modalClose');
+
+            function openQuickView(p) {
+                document.getElementById('modalImage').src = p.image;
+                document.getElementById('modalName').textContent = p.name;
+                document.getElementById('modalSku').textContent = `SKU: ${p.sku}`;
+                document.getElementById('modalPrice').textContent = `₹${p.dealer}`;
+                document.getElementById('modalRetail').textContent = `₹${p.retail}`;
+                document.getElementById('modalDesc').textContent = p.desc;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                // Add to recently viewed
+                addRecentlyViewed(p.id);
+            }
+
+            modalClose.addEventListener('click', () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
                 }
             });
 
-            // ---------- TESTIMONIAL VIDEO PLACEHOLDER ----------
-            document.querySelector('.testimonial-video .play-btn')?.addEventListener('click', function() {
-                alert('🎥 Case Study Video: "How XYZ School got their kits in 5 days."');
+            // Add to Cart from modal
+            document.getElementById('modalAddCart').addEventListener('click', function() {
+                cartCount += 10;
+                updateCart();
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+                const cartBtn = document.getElementById('cartBtn');
+                cartBtn.style.transform = 'scale(1.2)';
+                setTimeout(() => cartBtn.style.transform = 'scale(1)', 300);
             });
 
-            // ---------- MEGA MENU / NAV TOGGLE PLACEHOLDER ----------
+            // ---------- CART ----------
+            function updateCart() {
+                document.getElementById('cartCount').textContent = cartCount;
+            }
+
+            // ---------- RECENTLY VIEWED ----------
+            function addRecentlyViewed(id) {
+                if (!recentViewed.includes(id)) {
+                    recentViewed.push(id);
+                    if (recentViewed.length > 6) recentViewed.shift();
+                    localStorage.setItem('recentlyViewed', JSON.stringify(recentViewed));
+                }
+                renderRecentlyViewed();
+            }
+
+            function renderRecentlyViewed() {
+                const carousel = document.getElementById('recentCarousel');
+                carousel.innerHTML = '';
+                if (recentViewed.length === 0) {
+                    carousel.innerHTML =
+                        '<p style="color:var(--color-text-light); font-size:0.9rem; padding:16px 0;">No products viewed yet.</p>';
+                    return;
+                }
+                recentViewed.forEach(id => {
+                    const p = products.find(pr => pr.id === id);
+                    if (!p) return;
+                    const item = document.createElement('div');
+                    item.className = 'item';
+                    item.innerHTML = `
+                            <img src="${p.image}" alt="${p.name}" loading="lazy" />
+                            <div class="info">
+                                <div class="name">${p.name}</div>
+                                <div class="price">₹${p.dealer}</div>
+                            </div>
+                        `;
+                    item.addEventListener('click', () => openQuickView(p));
+                    carousel.appendChild(item);
+                });
+            }
+
+            // ---------- LIVE FEED ----------
+            const feedContainer = document.getElementById('feedContainer');
+            const feedItems = [
+                { status: 'Cutting', text: 'RS-T101 x 150 pcs — Cutting in progress' },
+                { status: 'Printing', text: 'RS-L204 x 80 pcs — Digital DTG printing' },
+                { status: 'Stitching', text: 'RS-I309 x 600 pcs — Master tailoring' },
+                { status: 'QC', text: 'RS-T412 x 40 pcs — Passing quality check' },
+                { status: 'Packing', text: 'RS-T101 x 200 pcs — Packing for dispatch' },
+                { status: 'Shipped', text: 'Order #RS-2045 shipped to Delhi' },
+                { status: 'Cutting', text: 'RS-L204 x 120 pcs — Laser cutting' },
+                { status: 'Printing', text: 'RS-T412 x 60 pcs — Screen printing' },
+            ];
+
+            let feedIndex = 0;
+
+            function addFeedItem() {
+                const item = feedItems[feedIndex % feedItems.length];
+                const div = document.createElement('div');
+                div.className = 'feed-item';
+                div.innerHTML = `
+                        <span class="status">${item.status}</span>
+                        <span>${item.text}</span>
+                        <span class="time">${new Date().toLocaleTimeString()}</span>
+                    `;
+                feedContainer.prepend(div);
+                feedIndex++;
+                // Keep max 8 items
+                while (feedContainer.children.length > 8) {
+                    feedContainer.removeChild(feedContainer.lastChild);
+                }
+            }
+
+            // Initial feed items
+            for (let i = 0; i < 5; i++) addFeedItem();
+            setInterval(addFeedItem, 4000);
+
+            // ---------- THREE.JS 3D STUDIO ----------
+            const canvasContainer = document.getElementById('three-canvas');
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x0A0A0A);
+
+            const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
+            camera.position.set(3, 1, 4);
+            camera.lookAt(0, 0, 0);
+
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(canvasContainer.clientWidth || 400, canvasContainer.clientWidth || 400);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.shadowMap.enabled = true;
+            canvasContainer.appendChild(renderer.domElement);
+
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
+            scene.add(ambientLight);
+
+            const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            dirLight.position.set(5, 10, 7);
+            dirLight.castShadow = true;
+            scene.add(dirLight);
+
+            const fillLight = new THREE.DirectionalLight(0x3B82F6, 0.3);
+            fillLight.position.set(-3, 2, 4);
+            scene.add(fillLight);
+
+            const rimLight = new THREE.DirectionalLight(0xffffff, 0.4);
+            rimLight.position.set(0, -2, -5);
+            scene.add(rimLight);
+
+            // T-Shirt Shape (Extruded geometry to look like a folded shirt)
+            const shape = new THREE.Shape();
+            // Create a stylized T-shirt outline
+            shape.moveTo(-1.0, -1.2);
+            shape.lineTo(-1.0, -0.4);
+            shape.lineTo(-1.4, -0.2);
+            shape.lineTo(-1.4, 0.0);
+            shape.lineTo(-1.0, 0.0);
+            shape.lineTo(-1.0, 0.8);
+            shape.quadraticCurveTo(-0.8, 1.2, 0, 1.2);
+            shape.quadraticCurveTo(0.8, 1.2, 1.0, 0.8);
+            shape.lineTo(1.0, 0.0);
+            shape.lineTo(1.4, 0.0);
+            shape.lineTo(1.4, -0.2);
+            shape.lineTo(1.0, -0.4);
+            shape.lineTo(1.0, -1.2);
+            shape.quadraticCurveTo(0, -1.4, -1.0, -1.2);
+
+            const extrudeSettings = {
+                steps: 1,
+                depth: 0.15,
+                bevelEnabled: true,
+                bevelThickness: 0.05,
+                bevelSize: 0.05,
+                bevelSegments: 3
+            };
+
+            const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+            const material = new THREE.MeshPhysicalMaterial({
+                color: 0x3B82F6,
+                roughness: 0.4,
+                metalness: 0.05,
+                clearcoat: 0.1,
+                clearcoatRoughness: 0.4,
+                side: THREE.DoubleSide,
+            });
+            const shirt = new THREE.Mesh(geometry, material);
+            shirt.castShadow = true;
+            shirt.receiveShadow = true;
+            shirt.position.set(0, -0.2, 0);
+            shirt.rotation.x = -0.1;
+            shirt.rotation.z = 0.1;
+            scene.add(shirt);
+
+            // Ground plane shadow receiver
+            const groundGeo = new THREE.PlaneGeometry(4, 4);
+            const groundMat = new THREE.ShadowMaterial({ opacity: 0.3 });
+            const ground = new THREE.Mesh(groundGeo, groundMat);
+            ground.rotation.x = -Math.PI / 2;
+            ground.position.y = -0.8;
+            ground.receiveShadow = true;
+            scene.add(ground);
+
+            let targetRotationY = 0;
+            let currentRotationY = 0;
+
+            // Color picker
+            document.getElementById('colorPicker').addEventListener('input', function() {
+                material.color.set(this.value);
+            });
+
+            // View controls
+            document.querySelectorAll('.studio-controls .ctrl-btn[data-view]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.studio-controls .ctrl-btn[data-view]').forEach(b => b.classList
+                        .remove('active'));
+                    this.classList.add('active');
+                    const view = this.dataset.view;
+                    if (view === 'front') targetRotationY = 0;
+                    else if (view === 'back') targetRotationY = Math.PI;
+                    else if (view === 'sleeve') targetRotationY = Math.PI / 2;
+                });
+            });
+
+            document.getElementById('resetView').addEventListener('click', () => {
+                targetRotationY = 0;
+                document.querySelectorAll('.studio-controls .ctrl-btn[data-view]').forEach(b => b.classList.remove(
+                    'active'));
+                document.querySelector('.studio-controls .ctrl-btn[data-view="front"]').classList.add('active');
+            });
+
+            // Resize handler
+            function resizeRenderer() {
+                const width = canvasContainer.clientWidth || 400;
+                const height = width;
+                renderer.setSize(width, height);
+                camera.aspect = 1;
+                camera.updateProjectionMatrix();
+            }
+            window.addEventListener('resize', resizeRenderer);
+
+            // Animation Loop
+            function animate() {
+                requestAnimationFrame(animate);
+
+                // Smooth rotation
+                currentRotationY += (targetRotationY - currentRotationY) * 0.05;
+                shirt.rotation.y = currentRotationY;
+
+                // Subtle floating animation
+                shirt.position.y = -0.2 + Math.sin(Date.now() * 0.001) * 0.04;
+
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            // Handle canvas container resize on orientation change
+            const ro = new ResizeObserver(() => resizeRenderer());
+            ro.observe(canvasContainer);
+
+            // ---------- CHAT WIDGET ----------
+            const chatToggle = document.getElementById('chatToggle');
+            const chatBubble = document.getElementById('chatBubble');
+
+            chatToggle.addEventListener('click', () => {
+                chatBubble.classList.toggle('active');
+                chatToggle.innerHTML = chatBubble.classList.contains('active') ?
+                    '<i class="fas fa-times"></i>' :
+                    '<i class="fas fa-comment-dots"></i>';
+            });
+
+            // Close chat bubble after 10s if open
+            setInterval(() => {
+                if (chatBubble.classList.contains('active')) {
+                    // Keep it open, user can close manually
+                }
+            }, 10000);
+
+            // ---------- NAV TOGGLE ----------
             document.querySelector('.nav-toggle')?.addEventListener('click', function() {
                 const nav = document.querySelector('.nav-links');
                 if (nav) {
@@ -2153,11 +2866,18 @@
                     nav.style.boxShadow = 'var(--shadow-lg)';
                     nav.style.borderRadius = 'var(--radius-lg)';
                     nav.style.zIndex = '100';
+                    nav.style.alignItems = 'center';
                 }
             });
 
-            console.log('🚀 Rubbel Sports · 10/10 Experience Loaded.');
+            // ---------- INIT ----------
+            renderProducts();
+            renderRecentlyViewed();
+            updateCart();
+
+            console.log('🚀 Rubbel Sports · 10/10 Experience Active.');
         });
     </script>
+
 </body>
 </html>
