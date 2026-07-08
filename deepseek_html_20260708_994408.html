@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rubbel Sports – Premium B2B Wholesale</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+        /* ---------- RESET & VARIABLES ---------- */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #0B0B0B;
+            --white: #FFFFFF;
+            --neon: #CCFF00;
+            --bg: #F7F8FA;
+            --card: #FFFFFF;
+            --border: #ECECEC;
+            --success: #16C784;
+            --error: #FF4D4F;
+            --text-dark: #1A1A1A;
+            --text-muted: #6E6E6E;
+            --shadow-sm: 0 4px 24px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.10);
+            --radius: 20px;
+            --radius-sm: 12px;
+            --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --font: 'Inter', -apple-system, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* ---------- UTILITY ---------- */
+        .badge-neon {
+            background: var(--neon);
+            color: var(--black);
+            font-weight: 700;
+            font-size: 0.7rem;
+            padding: 4px 14px;
+            border-radius: 100px;
+            letter-spacing: 0.5px;
+            display: inline-block;
+        }
+
+        .section-title {
+            font-size: 2.6rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+        .section-title .highlight {
+            color: var(--neon);
+        }
+        .section-sub {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 580px;
+        }
+
+        /* ---------- TOP BAR ---------- */
+        .top-bar {
+            background: var(--black);
+            color: var(--text-muted);
+            padding: 8px 0;
+            font-size: 0.8rem;
+            border-bottom: 1px solid #1e1e1e;
+        }
+        .top-bar .inner {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px 24px;
+        }
+        .top-bar .inner span i {
+            color: var(--neon);
+            margin-right: 6px;
+        }
+        .top-bar .inner a {
+            color: var(--white);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .top-bar .inner a:hover {
+            color: var(--neon);
+        }
+
+        /* ---------- HEADER ---------- */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 0;
+        }
+        .header-grid {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--black);
+            text-decoration: none;
+        }
+        .logo i {
+            color: var(--neon);
+            font-size: 1.8rem;
+        }
+        .logo span {
+            font-weight: 400;
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            display: block;
+            margin-top: -2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2px;
+            list-style: none;
+            font-weight: 500;
+        }
+        .nav-links li {
+            position: relative;
+        }
+        .nav-links a {
+            padding: 8px 14px;
+            border-radius: 100px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        .nav-links a:hover {
+            background: var(--neon);
+            color: var(--black);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-left: auto;
+        }
+        .header-actions .icon-btn {
+            background: transparent;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+            padding: 6px;
+            border-radius: 50%;
+        }
+        .header-actions .icon-btn:hover {
+            background: var(--bg);
+            color: var(--neon);
+        }
+        .header-actions .badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--neon);
+            color: var(--black);
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 30px;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        /* ---------- MEGA MENU (simulated) ---------- */
+        .mega-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            box-shadow: var(--shadow-lg);
+            border-radius: var(--radius);
+            padding: 30px;
+            min-width: 700px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            border: 1px solid var(--border);
+        }
+        .nav-links li:hover .mega-dropdown {
+            display: grid;
+        }
+        .mega-dropdown h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        .mega-dropdown a {
+            display: block;
+            padding: 4px 0;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+        .mega-dropdown a:hover {
+            color: var(--neon);
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            padding: 80px 0 60px;
+            background: linear-gradient(135deg, #F7F8FA 0%, #E9ECEF 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(204, 255, 0, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-text h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+        }
+        .hero-text h1 .highlight {
+            color: var(--neon);
+            position: relative;
+        }
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin: 20px 0 30px;
+            max-width: 480px;
+        }
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            padding: 16px 36px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn-primary:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--border);
+            padding: 16px 36px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+        .btn-secondary:hover {
+            border-color: var(--black);
+            background: var(--black);
+            color: var(--white);
+        }
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+        .hero-stats .stat-item .number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--black);
+            letter-spacing: -0.02em;
+        }
+        .hero-stats .stat-item .label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ---------- CATEGORIES ---------- */
+        .categories {
+            padding: 80px 0;
+        }
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+        .category-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 30px 20px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--neon);
+        }
+        .category-card .icon {
+            font-size: 2.6rem;
+            color: var(--neon);
+            margin-bottom: 12px;
+        }
+        .category-card h3 {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .category-card p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 4px;
+        }
+
+        /* ---------- FEATURED PRODUCTS ---------- */
+        .featured {
+            padding: 60px 0;
+            background: var(--white);
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .product-card {
+            background: var(--bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            position: relative;
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--neon);
+            box-shadow: var(--shadow-lg);
+        }
+        .product-card .image {
+            aspect-ratio: 1 / 1;
+            background: #E9ECEF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--text-muted);
+            position: relative;
+        }
+        .product-card .image .badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--neon);
+            color: var(--black);
+            font-weight: 700;
+            font-size: 0.7rem;
+            padding: 4px 12px;
+            border-radius: 100px;
+        }
+        .product-card .image .wishlist {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+        .product-card .image .wishlist:hover {
+            background: var(--neon);
+            color: var(--black);
+        }
+        .product-card .info {
+            padding: 20px;
+        }
+        .product-card .info h4 {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .product-card .info .sku {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .product-card .info .price {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 6px 0;
+        }
+        .product-card .info .price span {
+            font-weight: 400;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-decoration: line-through;
+            margin-left: 8px;
+        }
+        .product-card .info .moq {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .product-card .info .quick-add {
+            margin-top: 12px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .product-card .info .quick-add input {
+            width: 60px;
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            text-align: center;
+            font-weight: 600;
+        }
+        .product-card .info .quick-add button {
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 60px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            flex: 1;
+        }
+        .product-card .info .quick-add button:hover {
+            background: var(--neon);
+            color: var(--black);
+        }
+
+        /* ---------- DEALER DASHBOARD (preview) ---------- */
+        .dashboard-preview {
+            padding: 80px 0;
+            background: var(--bg);
+        }
+        .dash-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 30px;
+        }
+        .dash-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 24px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        .dash-card:hover {
+            box-shadow: var(--shadow-sm);
+        }
+        .dash-card .title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+        }
+        .dash-card .value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 6px 0 4px;
+        }
+        .dash-card .change {
+            font-size: 0.85rem;
+            color: var(--success);
+        }
+        .dash-card .change.down {
+            color: var(--error);
+        }
+        .dash-card .action {
+            margin-top: 12px;
+            background: var(--bg);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .dash-card .action:hover {
+            background: var(--neon);
+        }
+
+        /* ---------- TESTIMONIALS ---------- */
+        .testimonials {
+            padding: 80px 0;
+            background: var(--white);
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .testimonial-card {
+            background: var(--bg);
+            border-radius: var(--radius);
+            padding: 30px;
+            border: 1px solid var(--border);
+        }
+        .testimonial-card .stars {
+            color: var(--neon);
+            margin-bottom: 12px;
+        }
+        .testimonial-card blockquote {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+        .testimonial-card .author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .testimonial-card .author .avatar {
+            width: 44px;
+            height: 44px;
+            background: var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+        .testimonial-card .author .name {
+            font-weight: 600;
+        }
+        .testimonial-card .author .role {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            background: var(--black);
+            color: var(--text-muted);
+            padding: 60px 0 30px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+        .footer-grid h4 {
+            color: var(--white);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .footer-grid a {
+            display: block;
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        .footer-grid a:hover {
+            color: var(--neon);
+        }
+        .footer-bottom {
+            border-top: 1px solid #1e1e1e;
+            padding-top: 24px;
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .category-grid,
+            .product-grid,
+            .testimonial-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .dash-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 650px) {
+            .header-grid {
+                flex-wrap: wrap;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hero-text h1 {
+                font-size: 2.4rem;
+            }
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+            .category-grid,
+            .product-grid,
+            .testimonial-grid,
+            .dash-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 0 16px;
+            }
+        }
+
+        /* ---------- ANIMATIONS ---------- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        .float-anim {
+            animation: float 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== TOP BAR ========== -->
+    <div class="top-bar">
+        <div class="container inner">
+            <span><i class="fas fa-check-circle"></i> GST B2B Invoices</span>
+            <span><i class="fas fa-truck"></i> 24‑Hour Dispatch</span>
+            <span><i class="fas fa-tags"></i> Bulk Discounts</span>
+            <span><i class="fas fa-headset"></i> Dealer Support</span>
+            <a href="#"><i class="fas fa-user-plus"></i> Become a Dealer</a>
+        </div>
+    </div>
+
+    <!-- ========== HEADER ========== -->
+    <header>
+        <div class="container header-grid">
+            <a href="#" class="logo">
+                <i class="fas fa-running"></i>
+                RUBBEL<span>Wholesale Sportswear</span>
+            </a>
+
+            <ul class="nav-links">
+                <li>
+                    <a href="#">Products <i class="fas fa-chevron-down"></i></a>
+                    <div class="mega-dropdown">
+                        <div>
+                            <h4>Men</h4>
+                            <a href="#">T‑Shirts</a>
+                            <a href="#">Polo</a>
+                            <a href="#">Track Pants</a>
+                            <a href="#">Shorts</a>
+                            <a href="#">Compression</a>
+                        </div>
+                        <div>
+                            <h4>Women</h4>
+                            <a href="#">T‑Shirts</a>
+                            <a href="#">Sports Bras</a>
+                            <a href="#">Leggings</a>
+                            <a href="#">Shorts</a>
+                        </div>
+                        <div>
+                            <h4>Performance</h4>
+                            <a href="#">Running</a>
+                            <a href="#">Gym Wear</a>
+                            <a href="#">Training</a>
+                            <a href="#">Hoodies</a>
+                        </div>
+                        <div>
+                            <h4>B2B Services</h4>
+                            <a href="#">OEM Manufacturing</a>
+                            <a href="#">Private Label</a>
+                            <a href="#">Corporate Uniforms</a>
+                            <a href="#">Bulk Orders</a>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="#">OEM</a></li>
+                <li><a href="#">Dealers</a></li>
+                <li><a href="#">Track Order</a></li>
+                <li><a href="#">Support</a></li>
+            </ul>
+
+            <div class="header-actions">
+                <button class="icon-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+                <button class="icon-btn" aria-label="Wishlist"><i class="far fa-heart"></i></button>
+                <button class="icon-btn" aria-label="Account"><i class="far fa-user"></i></button>
+                <button class="icon-btn" aria-label="Cart">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="badge" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-text reveal">
+                <span class="badge-neon">⚡ B2B Wholesale Platform</span>
+                <h1>Gear Up. <span class="highlight">Bulk Up.</span> Dominate.</h1>
+                <p>Premium sportswear engineered for the Indian retail market. Trusted by 1,200+ dealers across 15 states.</p>
+                <div class="hero-cta">
+                    <a href="#" class="btn-primary"><i class="fas fa-store"></i> Become a Dealer</a>
+                    <a href="#" class="btn-secondary"><i class="fas fa-download"></i> Download Catalogue</a>
+                </div>
+            </div>
+            <div class="hero-stats reveal">
+                <div class="stat-item">
+                    <div class="number">1,200+</div>
+                    <div class="label">Retailers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number">24h</div>
+                    <div class="label">Dispatch</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number">15</div>
+                    <div class="label">States Covered</div>
+                </div>
+                <div class="stat-item" style="grid-column: 1 / -1; text-align: center; padding-top: 8px; border-top: 1px solid var(--border);">
+                    <span style="font-weight:600; color:var(--neon);">⚡ 12,450+</span> T‑Shirts &nbsp;|&nbsp; <span style="font-weight:600; color:var(--neon);">8,200+</span> Lowers &nbsp;|&nbsp; <span style="font-weight:600; color:var(--neon);">25K+</span> Innerwear
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CATEGORIES ========== -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title reveal">Shop by <span class="highlight">Category</span></h2>
+            <p class="section-sub reveal">Find exactly what your store needs – from performance tees to premium innerwear.</p>
+            <div class="category-grid">
+                <div class="category-card reveal">
+                    <div class="icon"><i class="fas fa-tshirt"></i></div>
+                    <h3>T‑Shirts</h3>
+                    <p>Dry‑fit, cotton, polo</p>
+                </div>
+                <div class="category-card reveal">
+                    <div class="icon"><i class="fas fa-user"></i></div>
+                    <h3>Lowers</h3>
+                    <p>Track pants, shorts, joggers</p>
+                </div>
+                <div class="category-card reveal">
+                    <div class="icon"><i class="fas fa-layer-group"></i></div>
+                    <h3>Innerwear</h3>
+                    <p>Compression, seamless</p>
+                </div>
+                <div class="category-card reveal">
+                    <div class="icon"><i class="fas fa-dumbbell"></i></div>
+                    <h3>Gym Wear</h3>
+                    <p>Performance, training</p>
+                </div>
+                <div class="category-card reveal">
+                    <div class="icon"><i class="fas fa-running"></i></div>
+                    <h3>Running</h3>
+                    <p>Lightweight, breathable</p>
+                </div>
+                <div class="category-card reveal">
+                    <div class="icon"><i class="fas fa-tshirt"></i></div>
+                    <h3>Accessories</h3>
+                    <p>Socks, caps, bags</p>
+                </div>
+                <div class="category-card reveal">
+                    <div class="icon"><i class="fas fa-building"></i></div>
+                    <h3>Corporate</h3>
+                    <p>Uniforms, bulk orders</p>
+                </div>
+                <div class="category-card reveal">
+                    <div class="icon"><i class="fas fa-cogs"></i></div>
+                    <h3>OEM</h3>
+                    <p>Private label, custom</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FEATURED PRODUCTS ========== -->
+    <section class="featured">
+        <div class="container">
+            <h2 class="section-title reveal">Featured <span class="highlight">Products</span></h2>
+            <p class="section-sub reveal">Best‑selling items with wholesale pricing and low MOQ.</p>
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card reveal">
+                    <div class="image">
+                        <i class="fas fa-tshirt"></i>
+                        <span class="badge">Best Seller</span>
+                        <button class="wishlist" aria-label="Add to wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="info">
+                        <h4>Dry‑Fit Performance T‑Shirt</h4>
+                        <div class="sku">SKU: RS‑T101</div>
+                        <div class="price">₹425 <span>₹650</span></div>
+                        <div class="moq">MOQ: 50 pcs</div>
+                        <div class="quick-add">
+                            <input type="number" value="10" min="1" />
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="product-card reveal">
+                    <div class="image">
+                        <i class="fas fa-tshirt"></i>
+                        <span class="badge" style="background: #16C784; color: white;">Hot Deal</span>
+                        <button class="wishlist" aria-label="Add to wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="info">
+                        <h4>Compression Cotton Lowers</h4>
+                        <div class="sku">SKU: RS‑L204</div>
+                        <div class="price">₹680 <span>₹850</span></div>
+                        <div class="moq">MOQ: 30 pcs</div>
+                        <div class="quick-add">
+                            <input type="number" value="10" min="1" />
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="product-card reveal">
+                    <div class="image">
+                        <i class="fas fa-tshirt"></i>
+                        <button class="wishlist" aria-label="Add to wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="info">
+                        <h4>Seamless Innerwear (6‑Pack)</h4>
+                        <div class="sku">SKU: RS‑I309</div>
+                        <div class="price">₹299 <span>₹450</span></div>
+                        <div class="moq">MOQ: 100 pcs</div>
+                        <div class="quick-add">
+                            <input type="number" value="10" min="1" />
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 4 -->
+                <div class="product-card reveal">
+                    <div class="image">
+                        <i class="fas fa-tshirt"></i>
+                        <span class="badge">New</span>
+                        <button class="wishlist" aria-label="Add to wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="info">
+                        <h4>Racerback Tank Top</h4>
+                        <div class="sku">SKU: RS‑T412</div>
+                        <div class="price">₹550 <span>₹720</span></div>
+                        <div class="moq">MOQ: 40 pcs</div>
+                        <div class="quick-add">
+                            <input type="number" value="10" min="1" />
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== DEALER DASHBOARD PREVIEW ========== -->
+    <section class="dashboard-preview">
+        <div class="container">
+            <h2 class="section-title reveal">Your <span class="highlight">Dealer Dashboard</span></h2>
+            <p class="section-sub reveal">Real‑time insights, orders, invoices – all in one place.</p>
+            <div class="dash-grid">
+                <div class="dash-card reveal">
+                    <div class="title">Total Orders</div>
+                    <div class="value">148</div>
+                    <div class="change">↑ 12% this month</div>
+                    <button class="action">View All</button>
+                </div>
+                <div class="dash-card reveal">
+                    <div class="title">Outstanding (₹)</div>
+                    <div class="value">₹1,28,400</div>
+                    <div class="change down">↓ 5% overdue</div>
+                    <button class="action">Pay Now</button>
+                </div>
+                <div class="dash-card reveal">
+                    <div class="title">Credit Limit</div>
+                    <div class="value">₹5,00,000</div>
+                    <div class="change">Available: ₹3,71,600</div>
+                    <button class="action">Request Increase</button>
+                </div>
+                <div class="dash-card reveal">
+                    <div class="title">Pending Invoices</div>
+                    <div class="value">3</div>
+                    <div class="change">Due in 12 days</div>
+                    <button class="action">Download GST Bills</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TESTIMONIALS ========== -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title reveal">What <span class="highlight">Retailers</span> Say</h2>
+            <p class="section-sub reveal">Trusted by businesses across India.</p>
+            <div class="testimonial-grid">
+                <div class="testimonial-card reveal">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>“The bulk ordering system is a lifesaver. I can re‑stock my entire store in under 5 minutes.”</blockquote>
+                    <div class="author">
+                        <div class="avatar">RK</div>
+                        <div><div class="name">Rajesh Kumar</div><div class="role">Franchise Partner, Delhi</div></div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>“Premium quality at wholesale prices. My customers keep coming back for the fit and fabric.”</blockquote>
+                    <div class="author">
+                        <div class="avatar">AS</div>
+                        <div><div class="name">Anita Sharma</div><div class="role">Gym Owner, Mumbai</div></div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>“The GST billing and credit system makes B2B effortless. Highly recommended.”</blockquote>
+                    <div class="author">
+                        <div class="avatar">VP</div>
+                        <div><div class="name">Vikram Patel</div><div class="role">Distributor, Gujarat</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4><i class="fas fa-running" style="color:var(--neon);"></i> RUBBEL SPORTS</h4>
+                    <p style="margin-top:6px;">Premium B2B wholesale sportswear for the Indian market.</p>
+                    <p style="margin-top:12px;"><i class="fas fa-envelope" style="color:var(--neon);"></i> <a href="mailto:rubbelsports@gmail.com" style="color:var(--neon);">rubbelsports@gmail.com</a></p>
+                    <p><i class="fas fa-phone" style="color:var(--neon);"></i> +91-98765-43210</p>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Manufacturing</a>
+                    <a href="#">OEM / Private Label</a>
+                    <a href="#">Dealer Program</a>
+                </div>
+                <div>
+                    <h4>Support</h4>
+                    <a href="#">Shipping & Returns</a>
+                    <a href="#">Track Order</a>
+                    <a href="#">Invoice Help</a>
+                    <a href="#">Contact Support</a>
+                </div>
+                <div>
+                    <h4>Resources</h4>
+                    <a href="#">Blog</a>
+                    <a href="#">Size Guide</a>
+                    <a href="#">Download Catalogue</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Rubbel Sports. All rights reserved.</span>
+                <span>
+                    <i class="fas fa-shield-alt" style="color:var(--neon);"></i> Secure Payments: UPI · Razorpay · Bank Transfer
+                </span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        // ---- Cart badge demo ----
+        let cartItems = 0;
+        const cartBadge = document.getElementById('cartCount');
+
+        document.querySelectorAll('.quick-add button').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const input = this.previousElementSibling;
+                const qty = parseInt(input.value) || 1;
+                cartItems += qty;
+                cartBadge.textContent = cartItems;
+                // Simple feedback
+                this.textContent = 'Added!';
+                setTimeout(() => { this.textContent = 'Add to Cart'; }, 800);
+            });
+        });
+
+        // ---- Scroll reveal (Intersection Observer) ----
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
+
+        reveals.forEach(el => observer.observe(el));
+
+        // ---- Wishlist toggle ----
+        document.querySelectorAll('.wishlist').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const icon = this.querySelector('i');
+                icon.classList.toggle('far');
+                icon.classList.toggle('fas');
+                if (icon.classList.contains('fas')) {
+                    this.style.background = 'var(--neon)';
+                } else {
+                    this.style.background = 'var(--white)';
+                }
+            });
+        });
+
+        // ---- Mega menu accessibility: close on click outside ----
+        document.addEventListener('click', function(e) {
+            const dropdowns = document.querySelectorAll('.mega-dropdown');
+            dropdowns.forEach(dd => {
+                if (!dd.contains(e.target) && !dd.parentElement.contains(e.target)) {
+                    dd.style.display = 'none';
+                }
+            });
+        });
+        document.querySelectorAll('.nav-links > li > a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const parent = this.parentElement;
+                const dropdown = parent.querySelector('.mega-dropdown');
+                if (dropdown) {
+                    e.preventDefault();
+                    const isOpen = dropdown.style.display === 'grid';
+                    document.querySelectorAll('.mega-dropdown').forEach(d => d.style.display = 'none');
+                    dropdown.style.display = isOpen ? 'none' : 'grid';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
